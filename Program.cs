@@ -7,16 +7,14 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        // Create an instance of BrowserPicker with your Chromium list
-        List<Chromium> chromiumList = new List<Chromium>(); // Replace with your Chromium instances
-        BrowserPicker browserPicker = new BrowserPicker(chromiumList);
-
-        _ = Parser.Default.ParseArguments<Options>(args)
+       _ = Parser.Default.ParseArguments<Options>(args)
             .WithParsed(options =>
             {
-                options.Browser = "edge";
+                // Create an instance of BrowserPicker with your Chromium list
+                List<Chromium> chromiumList = new(); // Replace with your Chromium instances
+                BrowserPicker browserPicker = new(chromiumList);
 
-                // Call the Execute method with parsed options and the browserPicker instance
+                // Call the Execute method with parsed options
                 Execute(options, browserPicker);
             })
             .WithNotParsed(errors =>
